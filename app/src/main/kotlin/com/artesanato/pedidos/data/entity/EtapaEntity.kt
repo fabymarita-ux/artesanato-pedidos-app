@@ -1,0 +1,26 @@
+package com.artesanato.pedidos.data.entity
+
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.PrimaryKey
+
+@Entity(
+    tableName = "etapas",
+    foreignKeys = [
+        ForeignKey(
+            entity = PedidoEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["pedidoId"],
+            onDelete = ForeignKey.CASCADE
+        )
+    ]
+)
+data class EtapaEntity(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val pedidoId: Int,
+    val titulo: String,
+    val descricao: String,
+    val concluida: Boolean = false,
+    val ordem: Int = 0
+)
